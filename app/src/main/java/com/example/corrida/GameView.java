@@ -88,14 +88,14 @@ public class GameView extends View {
                 Bitmap imagemCarro = Bitmap.createScaledBitmap(imagemCarroOriginal, novoLargura2, novoAltura2, true);
 
                 // Definir a posição inicial (no eixo X) e um espaçamento fixo no eixo Y
-                int startX = 400;  // Posição X fixa, por exemplo, 940 pixels à direita da borda esquerda da pista
+                int startX = 390;  // Posição X fixa, por exemplo, 390 pixels à direita da borda esquerda da pista
                 int startY = 1150;  // Posição inicial no eixo Y (primeiro carro)
                 int espacoEntreCarros = 10;  // Espaçamento entre os carros
 
-                for (int i = 0; i <= numCarros; i++) {
+                for (int i = 0; i < numCarros; i++) { //Desfazer alteração teste
                     if (i == 0) {
                         // Criar safetcar na posição inicial
-                        Car safetCar = new SafetCar(pista, imagemSafetCar, startX + 10, startY, carros, semaforo, 5);
+                        Car safetCar = new SafetCar(pista, imagemSafetCar, i,startX + 10, startY, carros, semaforo, 5);
                         safetCar.criarSensores();
                         // Adicionar safetcar à lista de carros
                         carros.add(safetCar);
@@ -104,10 +104,10 @@ public class GameView extends View {
                         Thread threadSafetCar = new Thread(safetCar);
                         threadsCarros.add(threadSafetCar);
                         threadSafetCar.start();  // Inicia a thread do carro
-                        //threadSafetCar.setPriority(10); // Muda a prioridade do safetcar
+                        threadSafetCar.setPriority(5); // Muda a prioridade do safetcar
                     } else {
                         // Criar um novo carro na próxima posição, um atrás do outro no eixo Y
-                        Car carro = new RacingCar(pista, imagemCarro, startX - i * (imagemCarro.getWidth() + espacoEntreCarros), startY, carros, semaforo, 5);
+                        Car carro = new RacingCar(pista, imagemCarro, i, startX - i * (imagemCarro.getWidth() + espacoEntreCarros), startY, carros, semaforo, 5);
                         carro.criarSensores();
                         // Adicionar o carro à lista de carros
                         carros.add(carro);
@@ -116,7 +116,7 @@ public class GameView extends View {
                         Thread threadCarro = new Thread(carro);
                         threadsCarros.add(threadCarro);
                         threadCarro.start();  // Inicia a thread do carro
-                        //threadCarro.setPriority(4); // Muda a prioridade do carro
+                        threadCarro.setPriority(5); // Muda a prioridade do carro
                     }
                 }
             } else {
@@ -191,13 +191,16 @@ public class GameView extends View {
     private void desenharLinhasCurva(Canvas canvas) {
         // Definir cor e espessura da linha
         Paint paint = new Paint();
-        paint.setColor(Color.RED);  // Cor da linha (vermelha)
-        paint.setStrokeWidth(10);    // Espessura da linha
+        paint.setColor(Color.GRAY);  // Cor da linha (vermelha)
+        paint.setStrokeWidth(16);    // Espessura da linha
 
         // Linha 1: Início da curva (x = 400, y = 200 até y = 500)
         canvas.drawLine(490, 330, 490, 630, paint);
 
         // Linha 2: Fim da curva (x = 500, y = 700 até y = 1000)
         canvas.drawLine(590, 700, 590, 1000, paint);
+
+        //Linha de largada/chegada
+        canvas.drawLine(540, 1019, 540, 1362, paint);
     }
 }

@@ -10,7 +10,7 @@ public class TesteAtualizarPosicaoX {
 
     @Test
     public void testeAtualizarPosicaoX() {
-        int resultado = x.atualizarPosicaoX(5, 0);
+        int resultado = x.atualizarPosicaoX(5, 90);
 
         assertEquals(5, resultado);
     }

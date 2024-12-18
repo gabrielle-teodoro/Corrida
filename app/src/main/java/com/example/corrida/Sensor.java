@@ -56,7 +56,7 @@ public class Sensor {
 
             double raio = Math.sqrt(Math.pow((double) outroCarro.getImage().getWidth() / 2, 2) + Math.pow((double) outroCarro.getImage().getHeight() / 2, 2));
 
-            return distancia <= raio + 10;
+            return distancia <= raio + 20;
         } catch (Exception e){
             Log.e("Sensor", "Erro ao detectar colisão", e);
             return false;

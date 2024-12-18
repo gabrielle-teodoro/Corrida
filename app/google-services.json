@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1093413354973",
+    "project_id": "corrida-50c1f",
+    "storage_bucket": "corrida-50c1f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093413354973:android:a412c52c11534ff74f8a34",
+        "android_client_info": {
+          "package_name": "com.example.corrida"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5HfKOuoaTJst59SWXqLUQtGw-nS6NaP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
