@@ -72,7 +72,7 @@ public class GameView extends View {
                 semaforo = new Semaphore(1);
 
                 // Carregar a imagem do safetcar
-                Bitmap imagemSafetCarOriginal = BitmapFactory.decodeResource(getResources(), R.drawable.safetcar);
+                Bitmap imagemSafetCarOriginal = BitmapFactory.decodeResource(getResources(), R.drawable.carro); //alterar posteriormente
 
                 // Redimensionar o bitmap para o tamanho desejado (exemplo: 150x75 pixels)
                 int novoLargura = 120;  // Largura desejada
@@ -89,13 +89,13 @@ public class GameView extends View {
 
                 // Definir a posição inicial (no eixo X) e um espaçamento fixo no eixo Y
                 int startX = 390;  // Posição X fixa, por exemplo, 390 pixels à direita da borda esquerda da pista
-                int startY = 1150;  // Posição inicial no eixo Y (primeiro carro)
+                int startY = 1170;  // Posição inicial no eixo Y (primeiro carro)
                 int espacoEntreCarros = 10;  // Espaçamento entre os carros
 
                 for (int i = 0; i < numCarros; i++) { //Desfazer alteração teste
                     if (i == 0) {
                         // Criar safetcar na posição inicial
-                        Car safetCar = new SafetCar(pista, imagemSafetCar, i,startX + 10, startY, carros, semaforo, 5);
+                        Car safetCar = new SafetCar(pista, imagemSafetCar, i,startX + 10, startY, carros, semaforo, 8);
                         safetCar.criarSensores();
                         // Adicionar safetcar à lista de carros
                         carros.add(safetCar);
@@ -190,17 +190,81 @@ public class GameView extends View {
     // Método para desenhar as linhas de início e fim da curva
     private void desenharLinhasCurva(Canvas canvas) {
         // Definir cor e espessura da linha
-        Paint paint = new Paint();
-        paint.setColor(Color.GRAY);  // Cor da linha (vermelha)
-        paint.setStrokeWidth(16);    // Espessura da linha
+        Paint paint1 = new Paint();   // Largada e chegada
+        paint1.setColor(Color.GRAY);  // Cor da linha
+        paint1.setStrokeWidth(16);    // Espessura da linha
 
-        // Linha 1: Início da curva (x = 400, y = 200 até y = 500)
-        canvas.drawLine(490, 330, 490, 630, paint);
+        Paint paint2 = new Paint();   // Semáforos
+        paint2.setColor(Color.RED);   // Cor da linha
+        paint2.setStrokeWidth(16);    // Espessura da linha
 
-        // Linha 2: Fim da curva (x = 500, y = 700 até y = 1000)
-        canvas.drawLine(590, 700, 590, 1000, paint);
+        Paint paint3 = new Paint();   // Medidores de fluxo
+        paint3.setColor(Color.BLUE);  // Cor da linha
+        paint3.setStrokeWidth(16);    // Espessura da linha
 
         //Linha de largada/chegada
-        canvas.drawLine(540, 1019, 540, 1362, paint);
+        canvas.drawLine(540, 1019, 540, 1362, paint1);
+
+        // Linha 1: Início do semáforo 1
+        //canvas.drawLine(850, 300, 1080, 300, paint2); // rota 1
+        canvas.drawLine(0, 410, 255, 410, paint2); // rota 2
+
+        // Linha 2: Fim do semáforo 1
+        //canvas.drawLine(800, 0, 800, 260, paint2); // rota 1
+        canvas.drawLine(280, 450, 280, 720, paint2); // rota 2
+
+        // Linha 3: Início do semáforo 2
+        //canvas.drawLine(490, 350, 490, 620, paint2);
+        canvas.drawLine(600, 670, 840, 670, paint2);
+
+        // Linha 4: Fim do semáforo 2
+        //canvas.drawLine(600, 660, 840, 660, paint2);
+        canvas.drawLine(570, 720, 570, 960, paint2);
+
+        // Linha 5: Início do semáforo 3
+        //canvas.drawLine(40, 1040, 280, 1040, paint2);
+
+        // Linha 6: Fim do semáforo 3
+        //canvas.drawLine(300, 1070, 300, 1320, paint2);
+
+
+        // Linha do medidor F1
+        //canvas.drawLine(750, 1070, 750, 1320, paint3); // rota 1
+        canvas.drawLine(850, 1070, 850, 1320, paint3);
+
+        // Linha do medidor F2
+        canvas.drawLine(850, 880, 1080, 880, paint3);
+
+        // Linha do medidor F3
+        canvas.drawLine(850, 480, 1080, 480, paint3);
+
+        // Linha do medidor F4
+        //canvas.drawLine(600, 10, 600, 270, paint3); // rota 1
+        canvas.drawLine(800, 0, 800, 260, paint3);
+
+        // Linha do medidor F5
+        //canvas.drawLine(0, 410, 255, 410, paint3);
+        canvas.drawLine(500, 20, 500, 280, paint3);
+
+        // Linha do medidor F6
+        //canvas.drawLine(380, 395, 380, 675, paint3);
+        canvas.drawLine(280, 80, 280, 380, paint3);
+
+        // Linha do medidor F7
+        //canvas.drawLine(600, 690, 840, 690, paint3);
+        canvas.drawLine(0, 430, 255, 430, paint3);
+
+        // Linha do medidor F8
+        //canvas.drawLine(450, 720, 450, 970, paint3);
+        canvas.drawLine(300, 720, 300, 970, paint3);
+
+        // Linha do medidor F9
+        //canvas.drawLine(40, 990, 280, 990, paint3);
+        canvas.drawLine(40, 1020, 280, 1020, paint3);
+
+        // Linha do medidor F10
+        //canvas.drawLine(400, 1070, 400, 1320, paint3); // rota 1
+        canvas.drawLine(300, 1070, 300, 1320, paint3);
     }
+
 }

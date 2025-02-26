@@ -63,6 +63,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.appcompat)
     implementation(project(":gamelib"))
+    implementation (libs.ejml.all)
+    implementation (libs.ejml.all)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
